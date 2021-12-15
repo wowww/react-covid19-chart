@@ -3,8 +3,19 @@ import { Bar, Doughnut, Line } from 'react-chartjs-2'
 import axios from 'axios'
 
 const Contents = () => {
-  const [confirmedData, setConfirmedData] = useState({});
-  
+  const [confirmedData, setConfirmedData] = useState({
+    labels: ["1월", "2월", "3월"],
+    datasets: [
+      {
+        label: "국내 누적 확진자",
+        backgroundColor: "salmon",
+        fill: true,
+        data: [10, 5, 3]
+      }
+
+    ],
+  });
+
   useEffect (() => {
     const fetchEvents = async() => {
       const res = await axios.get("https://api.covid19api.com/total/dayone/country/kr")
