@@ -75,7 +75,7 @@ const Contents = () => {
     }
 
     fetchEvents()
-  })
+  }, [])
 
   return (
     <section>
