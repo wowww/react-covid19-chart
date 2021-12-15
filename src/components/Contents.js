@@ -28,8 +28,13 @@ const Contents = () => {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
         const date = currentDate.getDate();
+        const confirmed = cur.Confirmed;
+        const active = cur.Active;
+        const death = cur.Deaths;
+        const recovered = cur.Recovered;
 
-        console.log(year, month, date)
+
+        console.log(cur, year, month, date)
 
         return acc
       }, [])
