@@ -4,16 +4,7 @@ import axios from 'axios'
 
 const Contents = () => {
   const [confirmedData, setConfirmedData] = useState({
-    labels: ["1월", "2월", "3월"],
-    datasets: [
-      {
-        label: "국내 누적 확진자",
-        backgroundColor: "salmon",
-        fill: true,
-        data: [10, 5, 3]
-      }
-
-    ],
+    
   });
 
   useEffect (() => {
@@ -51,6 +42,21 @@ const Contents = () => {
 
         return acc
       }, [])
+
+      const labels = arr.map(a => `${a.month+1}월`);
+      
+      setConfirmedData({
+        labels,
+        datasets: [
+          {
+            label: "국내 누적 확진자",
+            backgroundColor: "salmon",
+            fill: true,
+            data: arr.map(a => a.confirmed)
+          }
+
+        ],
+      });
 
       console.log(arr)
     }
