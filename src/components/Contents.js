@@ -19,8 +19,20 @@ const Contents = () => {
   useEffect (() => {
     const fetchEvents = async() => {
       const res = await axios.get("https://api.covid19api.com/total/dayone/country/kr")
-      console.log(res)
+      makeData(res.data)
+    }
 
+    const makeData = (items) => {
+      const arr = items.reduce((acc, cur) => {
+        const currentDate = new Date(cur.Date);
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const date = currentDate.getDate();
+
+        console.log(year, month, date)
+
+        return acc
+      }, [])
     }
 
     fetchEvents()
