@@ -3,9 +3,8 @@ import { Bar, Doughnut, Line } from 'react-chartjs-2'
 import axios from 'axios'
 
 const Contents = () => {
-  const [confirmedData, setConfirmedData] = useState({
-    
-  });
+  const [confirmedData, setConfirmedData] = useState({});
+  const [quarantinedData, setQuarantinedData] = useState({});
 
   useEffect (() => {
     const fetchEvents = async() => {
@@ -44,7 +43,7 @@ const Contents = () => {
       }, [])
 
       const labels = arr.map(a => `${a.month+1}월`);
-      
+
       setConfirmedData({
         labels,
         datasets: [
@@ -76,6 +75,20 @@ const Contents = () => {
                 titile: {
                   display: true,
                   text: "누적 확진자 추이",
+                  fontsize: 16
+                }
+              },
+              { legend: { display: true, position: "bottom" } })
+            }
+          />
+
+          <Line 
+            data={quarantinedData}
+            options={
+              ({
+                titile: {
+                  display: true,
+                  text: "월별 격리자 현황",
                   fontsize: 16
                 }
               },
