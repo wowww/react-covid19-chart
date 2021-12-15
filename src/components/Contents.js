@@ -5,6 +5,7 @@ import axios from 'axios'
 const Contents = () => {
   const [confirmedData, setConfirmedData] = useState({});
   const [quarantinedData, setQuarantinedData] = useState({});
+  const [comparedData, setcomparedData] = useState({});
 
   useEffect (() => {
     const fetchEvents = async() => {
@@ -69,6 +70,20 @@ const Contents = () => {
         ]
       })
 
+      const lastYear = arr[arr.length - 1]
+      setcomparedData({
+        labels: ["확진자", "격리해제", "사망"],
+        datasets: [
+          {
+            label: "누적 확진, 해제, 사망 비율",
+            backgroundColor: ["#ff3d67", "#059bff", "#ffc233"],
+            borderColor: ["#ff3d67", "#059bff", "#ffc233"],
+            fill: true,
+            data: [lastYear.confirmed, lastYear.recovered, lastYear.death]
+          }
+        ]
+      })
+
 
 
       console.log(arr)
@@ -103,6 +118,19 @@ const Contents = () => {
                 titile: {
                   display: true,
                   text: "월별 격리자 현황",
+                  fontsize: 16
+                }
+              },
+              { legend: { display: true, position: "bottom" } })
+            }
+          />
+          <Doughnut 
+            data={comparedData}
+            option={
+              ({
+                titile: {
+                  display: true,
+                  text: `누적, 확진, 해제, 사망 (${new Date().getMonth()+1}월)`,
                   fontsize: 16
                 }
               },
